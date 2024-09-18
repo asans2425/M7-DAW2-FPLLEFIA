@@ -10,21 +10,21 @@
 
 </style>
 </head>
-<body>
+<body class="d-flex flex-column justify-content-between" style="height:100vh" >
 
     <!-- Header -->
-    <header class="bg-light py-3 text-center">
-        <img src="logo_fp_llefia.png" alt="Logo FP Llefià" class="img-fluid" width="100">
-        <h1 class="mt-3">Módulo 7 - Práctica 1. Mi primera aplicación en PHP</h1>
+    <header class="bg-dark p-5 d-flex justify-content-between align-items-center">
+        <img src="img/logo40web-.png" alt="Logo FP Llefià" class="img-fluid">
+        <h1 class="mt-3 text-white ">Módulo 7 - Práctica 1. Mi primera aplicación en PHP</h1>
     </header>
 
     <!-- Main content -->
-    <main class="container mt-5 h-100">
+    <main class="container mt-5 h-100 my-auto">
         <div class="row">
             <!-- Columna 1: Foto rodona i nom -->
             <div class="col-md-6 text-center">
-                <img src="foto_teva.jpg" class="rounded-circle img-fluid" alt="Foto personal" width="200">
-                <h2 class="mt-3">El teu nom</h2>
+                <img src="https://media.licdn.com/dms/image/v2/D4E03AQGSMymaNMAIeQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1700211893380?e=1731542400&v=beta&t=UUaHGHqLC6B3Oz2VMUNJm-wRFSmoaX-fdhxQ_qXw0Ks" class="rounded-circle img-fluid" alt="Foto personal" width="200">
+                <h2 class="mt-3">Albert Arrebola</h2>
             </div>
 
             <!-- Columna 2: Paràgraf explicatiu -->
