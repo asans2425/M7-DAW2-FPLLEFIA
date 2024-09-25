@@ -10,6 +10,7 @@ echo 'Hola mundo con #';
 
 echo '<h1>Comentarios de bloque</h1>';
 
+
 /*
     Autor: Nombre Apellido
     Fecha: 2024

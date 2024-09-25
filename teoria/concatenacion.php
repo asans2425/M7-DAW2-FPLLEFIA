@@ -4,9 +4,14 @@
 //frase
 //{} o .
 $nombre = "Yeor";
-$pais = "España";
-$edad = 19;
+$pais = "UKRAINE";
+$edad = 23;
 
-$frase =  "Hola me llamo {$nombre} nací en ". $pais . "y tengo ". $edad . "años";
-echo $frase;
+
+
+echo "Hola me llamo" . $nombre . "tengo" . $edad . "años";
+echo "hola me llamo {$nombre} tengo {$edad} y nací en {$pais}";
+
+
+
 

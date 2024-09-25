@@ -2,7 +2,7 @@
 
 // $nom = 'Albert';
 // $edad = 18;
-// $mayoria = "";
+// $soyMayor = "";
 // $entender = false;
 
 // if($edad >=18){

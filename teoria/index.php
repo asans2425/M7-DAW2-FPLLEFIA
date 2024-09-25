@@ -8,29 +8,25 @@
 - comentarios
 - tipos de datos básicos (bool, int, float, string)
 - variables
-
-
 -->
+<?php
+echo "mi primer hola mundo";
+?>
+
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sesión 1</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Hola mundo</h1>
-    <?php echo 'hola mundo desde PHP'; 
     
-    echo '
-    <h1>Hola clase. soy html escrito desde PHP</h1>
-    ';
-    
-    
-    
-    ?>
-
+<h1>Titulo</h1>
+<?php echo "subtitulo" ?>
+<h3>Tercer titulo</h3>
+<?php echo "<p>Este es un parrafo</p>";?>
 
 
 
