@@ -64,3 +64,4 @@
 
 
 <!-- aqui tienes el emoji de SELECCIONADA ✔️ para copiarlo y usarlo en la práctica -->
+        include 'idolos.php'; // Incluye el archivo de datos
