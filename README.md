@@ -563,6 +563,6 @@ Les files de la taula de l'alumne aprovat es mostraran amb un fons verd clar, me
 ---
 
 
-## Conclusió
-
-PHP és un llenguatge potent per desenvolupar aplicacions web dinàmiques. A través de variables, bucles, funcions i connexions a bases de dades, els desenvolupadors poden crear experiències interactives i atractives per als usuaris. Aquest manual t'ha proporcionat una introducció a les funcions bàsiques de PHP i les millors pràctiques per al desenvolupament web.
+## A ESTUDIAR !!! 😁👍
+Guardeu aquest manual perquè sempre podreu recorrer a ell. 
+Bona sort a tothom 
