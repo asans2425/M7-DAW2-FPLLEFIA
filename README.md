@@ -334,6 +334,84 @@ $nom = $_GET['nom'];
 echo 'Hola, ' . $nom;
 ```
 
+>> PER ASSOLIR CONCEPTES......
+
+**ESTÀTIC VS DINÀMIC**
+En aquest exemple veure-ho perque serveix realment php. 
+En primer lloc tenim una taula normal creada amb HTML i BOOTSTRAP.
+   ```
+   <h2>Llista de Noms i Edats</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Edat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Marta</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>Pere</td>
+                <td>34</td>
+            </tr>
+            <tr>
+                <td>Laura</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>Jordi</td>
+                <td>30</td>
+            </tr>
+        </tbody>
+    </table>
+   ```
+
+## Resultat
+![image](https://github.com/user-attachments/assets/ec6f01b2-e05c-460f-a1af-71b6fdd69cf2)
+
+### Però.....
+
+Volem que la taula sigui dinàmica i qeu es contrueixi a partir de dades. No volem escriure tants TD (imagina si hi ha 400 persones quinHTML més llarg ens queda...) i tampoc volem anar canviant edats al HTML cada cop que algú faci anys... És per això que definirem noms i edats a un array associatiu i farem la taula a partir d'això. Tot el codi HTML que es repeteixi el posarem dins d'un bucle ``` foreach ``` així ens estalviem picar molt codi. 
+```
+<?php
+// Array associatiu amb noms i edats
+$persones = [
+    ["nom" => "Marta", "edat" => 28],
+    ["nom" => "Pere", "edat" => 34],
+    ["nom" => "Laura", "edat" => 22],
+    ["nom" => "Jordi", "edat" => 30]
+];
+?>
+```
+```
+//codi html amb la taula
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Edat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($persones as $persona) { ?>
+            <tr>
+                <td><?php echo $persona['nom']; ?></td>
+                <td><?php echo $persona['edat']; ?></td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+```
+
+## Resultat
+![image](https://github.com/user-attachments/assets/e9ddd9e2-0152-4e79-9440-884e83b8757d)
+
+
+
+
 
 # Part 2. Exercicis tipus examen
 
