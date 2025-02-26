@@ -22,7 +22,6 @@ class Carta
     public $numero;
     public $indice;
 
-    
 
     function __construct($p, $n, $indx)
     {

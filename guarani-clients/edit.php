@@ -43,17 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Editar Cliente - GRUPO GUARANI</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/0787d9ec00.js" crossorigin="anonymous"></script>
     <!-- Fuente Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Manrope', sans-serif;
-        }
-    </style>
+
 </head>
 
 <body class="bg-gray-100">
@@ -106,6 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-6">
                 <label for="cp" class="block text-gray-700 font-bold mb-2">CP</label>
                 <input type="text" id="cp" name="cp" value="<?php echo htmlspecialchars($cliente['cp']); ?>" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="mb-6">
+                <label for="cp" class="block text-gray-700 font-bold mb-2">Comentario</label>
+                <input type="text" id="comentario" name="comentario" value="<?php echo htmlspecialchars($cliente['comentario']); ?>" required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="flex justify-between">

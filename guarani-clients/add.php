@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 h-[100vh]">
     <!-- Encabezado -->
     <header class="bg-white text-[#800000] py-4 shadow">
         <div class="container mx-auto flex justify-between items-center px-4">
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </header>
 
-    <main class="container mx-auto p-4">
+    <main class="container mx-auto p-4 h-[100%]">
         <form action="add.php" method="POST" class="mt-10 bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
             <div class="mb-6">
                 <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre</label>
@@ -90,6 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-6">
                 <label for="cp" class="block text-gray-700 font-bold mb-2">CP</label>
                 <input type="text" id="cp" name="cp" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="mb-6">
+                <label for="cp" class="block text-gray-700 font-bold mb-2">Comentario</label>
+                <input type="text" id="comentario" name="comentario"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="flex justify-between">
