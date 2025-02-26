@@ -33,9 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "La contraseña no es correcta.";
         }
-
-        // Liberar el resultado en memoria (buena práctica)
-        $resultado->free();
     } else {
         echo "El usuario no existe.";
     }
