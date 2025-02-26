@@ -84,7 +84,7 @@ $projects = $result->fetch_all(MYSQLI_ASSOC);
     </table>
 
     <!-- Botón o link para crear uno nuevo -->
-    <p><a href="addProject.php">Añadir nuevo proyecto</a></p>
+    <p><a href="./projects/add-project.php">Añadir nuevo proyecto</a></p>
 </body>
 
 </html>

@@ -23,7 +23,7 @@ $projects = $resultProjects->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body class="bg-gray-100">
-    <!-- <header class="bg-gray-800 p-8 text-white flex justify-between items-center ">
+    <header class="bg-gray-800 p-8 text-white flex justify-between items-center ">
         <h1 class="text-3xl font-bold text-center">Sitio de pruebas</h1>
         <nav class="flex items-center">
             <?php if (isset($_SESSION['user_id'])): ?>
@@ -40,7 +40,7 @@ $projects = $resultProjects->fetch_all(MYSQLI_ASSOC);
                 <a href="register.php" class="text-sm font-semibold hover:underline ml-4">Registrarse</a>
             <?php endif; ?>
         </nav>
-    </header> -->
+    </header>
     <div class="container mx-auto p-4">
         <!-- Sección de Noticias -->
         <h1 class="text-3xl font-bold mb-6 text-center">Noticias Recientes</h1>
