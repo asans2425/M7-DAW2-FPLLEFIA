@@ -23,24 +23,22 @@ $projects = $resultProjects->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body class="bg-gray-100">
-    <header class="bg-gray-800 p-8 text-white flex justify-between items-center ">
-        <h1 class="text-3xl font-bold text-center">Sitio de pruebas</h1>
+
+    <header class="bg-gray-800 p-8 flex justify-center items-center">
+        <h1 class="text-3xl font-bold text-white">Tarjetas de Datos</h1>
         <nav class="flex items-center">
             <?php if (isset($_SESSION['user_id'])): ?>
-                <img src="<?= htmlspecialchars($_SESSION['user_avatar']) ?>" alt="Avatar" class="w-10 h-10 rounded-full mr-4">
-                <span class="text-sm font-semibold mr-4"><?= htmlspecialchars($_SESSION['name']) ?></span>
-                <a href="logout.php" class="text-sm font-semibold hover:underline">Cerrar Sesión</a>
+                <img src="<?= $_SESSION['user_avatar'] ?>" alt="">
+                <p><?= $_SESSION['user_name'] ?></p>
+                <a href="logout.php" class="text-white ml-4">Cerrar Sesión</a>
                 <?php if ($_SESSION['user_rol'] === 'admin'): ?>
-                    <a href="admin/adminPanel.php" class="text-sm font-semibold hover:underline ml-4">
-                        <img class="w-[64px]" src="./assets/admin.png" alt="">
-                    </a>
+                    <a href="admin/adminPanel.php" class="text-white ml-4"><img src="./assets/admin.png" alt=""></a>
                 <?php endif; ?>
-            <?php else: ?>
-                <a href="login.php" class="text-sm font-semibold hover:underline">Iniciar Sesión</a>
-                <a href="register.php" class="text-sm font-semibold hover:underline ml-4">Registrarse</a>
             <?php endif; ?>
         </nav>
     </header>
+
+
     <div class="container mx-auto p-4">
         <!-- Sección de Noticias -->
         <h1 class="text-3xl font-bold mb-6 text-center">Noticias Recientes</h1>

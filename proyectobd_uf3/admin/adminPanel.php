@@ -1,90 +1,64 @@
 <?php
 session_start();
-require_once '../config.php';
+require_once('../config.php');
 
-// 1. Verificar acceso
-if (!isset($_SESSION['user_id']) || $_SESSION['user_rol'] !== 'admin') {
-    echo "<h1>No tienes permisos para acceder aquí</h1>";
+//1. verificar que el rol sea administrador
+if (($_SESSION['user_rol']) !== 'admin') {
+    echo 'No tienes permisos para acceder a esta página';
     exit;
 }
 
-// 2. Aquí ya sabemos que es admin.
-// Preparar datos para mostrarlos en el HTML
-$result = $mysqli->query("SELECT * FROM PROJECTS");
-$projects = $result->fetch_all(MYSQLI_ASSOC);
+//aqui irn todas las tablas de la base de datos para que el admin pueda gestionarlas
+
+//extraccion de testimonios
+$resultTestimonios = $mysqli->query("SELECT * FROM TESTIMONIALS");
+$testimonios = $resultTestimonios->fetch_all(MYSQLI_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Panel de Administración</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <header class="bg-gray-800 p-8 text-white flex justify-between items-center ">
-        <h1 class="text-3xl font-bold text-center">Sitio de pruebas</h1>
-        <nav class="flex items-center">
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <img src="<?= htmlspecialchars($_SESSION['user_avatar']) ?>" alt="Avatar" class="w-10 h-10 rounded-full mr-4">
-                <span class="text-sm font-semibold mr-4"><?= htmlspecialchars($_SESSION['name']) ?></span>
-                <a href="logout.php" class="text-sm font-semibold hover:underline">Cerrar Sesión</a>
-                <?php if ($_SESSION['user_rol'] === 'admin'): ?>
-                    <a href="admin/adminPanel.php" class="text-sm font-semibold hover:underline ml-4">
-                        <img class="w-[64px]" src="./assets/admin.png" alt="">
-                    </a>
-                <?php endif; ?>
-            <?php else: ?>
-                <a href="login.php" class="text-sm font-semibold hover:underline">Iniciar Sesión</a>
-                <a href="register.php" class="text-sm font-semibold hover:underline ml-4">Registrarse</a>
-            <?php endif; ?>
-        </nav>
-    </header>
-    <h1>Panel de administración</h1>
-    <ul>
-        <li><a href="adminUsers.php">Gestión de usuarios</a></li>
-        <li><a href="adminNews.php">Gestión de noticias</a></li>
-        <li><a href="adminProjects.php">Gestión de proyectos</a></li>
-    </ul>
+    <h1>Panel de administrador</h1>
 
-    <h1>Proyectos</h1>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
+    <h2>Testimonios</h2>
+
+
+    <!-- aqui va la tabla dinamica mostrando los testimonios de la bbdd -->
+    <table class="table" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Testimonio</th>
+            <th>Valoración</th>
+            <th>Acciones</th>
+        </tr>
+        <?php foreach ($testimonios as $item) : ?>
             <tr>
-                <th>Id</th>
-                <th>Título</th>
-                <th>Descripción</th>
-                <th>Thumbnail</th>
-                <th>URL del proyecto</th>
-                <!-- Ejemplo: Botones para Editar/Borrar -->
-                <th>Acciones</th>
+                <td><?= $item['name'] ?></td>
+                <td><?= $item['surname'] ?></td>
+                <td><?= $item['description'] ?></td>
+                <td><?= $item['rating'] ?></td>
+                <td>
+                    <a href="edit-testimonial.php?id=<?= $item['id'] ?>">Editar</a>
+                    <a href="delete-testimonial.php?id=<?= $item['id'] ?>">Eliminar</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($projects as $project): ?>
-                <tr>
-                    <td><?= $project['id'] ?></td>
-                    <td><?= htmlspecialchars($project['title']) ?></td>
-                    <td><?= htmlspecialchars($project['description']) ?></td>
-                    <td><?= htmlspecialchars($project['thumbnail']) ?></td>
-                    <td><?= htmlspecialchars($project['url']) ?></td>
-                    <td>
-                        <!-- Link/botón para Editar -->
-                        <a href="editProject.php?id=<?= $project['id'] ?>">Editar</a>
-                        <!-- Link/botón para Borrar -->
-                        <a href="deleteProject.php?id=<?= $project['id'] ?>"
-                            onclick="return confirm('¿Estás seguro de eliminar este proyecto?')">
-                            Borrar
-                        </a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+        <?php endforeach; ?>
     </table>
 
-    <!-- Botón o link para crear uno nuevo -->
-    <p><a href="./projects/add-project.php">Añadir nuevo proyecto</a></p>
+
+    <h2>Usuarios</h2>
+    <h2>Noticias</h2>
+    <h2>Proyectos</h2>
 </body>
 
 </html>

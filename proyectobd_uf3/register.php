@@ -1,94 +1,79 @@
 <?php
-require_once 'config.php';
+require_once('config.php');
 session_start();
 
-// 2. Comprobar si se envió el formulario por POST
+//0. COMPROBAR SI EL FORMULARIO HA SIDO ENVIADO
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 2.1 Recoger los datos del formulario
-    $name     = $_POST['name'];
-    $surname  = $_POST['surname'];
-    $email    = $_POST['email'];
-    $avatar   = $_POST['avatar'];
+    //1. RECOGER DATOS DEL FORMULARIO
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
-    $age      = $_POST['age'];
-    $job      = $_POST['job'];
+    $avatar = $_POST['avatar'];
 
-    // 2.2 Hashear la contraseña
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    //2. cifrar la password con password_hash
+    $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
-    // 2.3 Preparar la sentencia SQL
-    //    Nota: date_register lo seteamos con NOW(), rol por defecto "user".
+    //3. preparar la consulta antes de insertar para evitar el sql injection
     $stmt = $mysqli->prepare(
-        "INSERT INTO USERS (name, surname, email, avatar, password, rol, age, job, date_register)
-         VALUES (?, ?, ?, ?, ?, 'user', ?, ?, NOW())"
+        "INSERT INTO USERS (name, surname, email, avatar, password, rol, age, job, date_register) VALUES (?, ?, ?, ?,?, 'user', ?, ?, NOW())"
     );
-
-    // Comprobar si la preparación tuvo éxito
+    //4. COMPROBAR QUE LA PREPARACION TUVO EXITO
     if (!$stmt) {
-        die("Error al preparar la consulta: " . $mysqli->error);
+        die('Error en la preparacion: ' . $mysqli->error);
     }
 
-    // 2.4 Vincular parámetros con bind_param
+    //5. BINDEAR LOS PARAMETROS
+    $stmt->bind_param('sssssis', $name, $surname, $email, $avatar, $passwordHashed, $age, $job);
 
-    $stmt->bind_param(
-        "sssssis",
-        $name,
-        $surname,
-        $email,
-        $avatar,
-        $passwordHash,
-        $age,
-        $job
-    );
-
-    // 2.5 Ejecutar la sentencia
+    //6. EJECUTAR LA CONSULTA
     if ($stmt->execute()) {
-
-        header("Location: login.php");
-        exit;
+        echo 'Usuario registrado correctamente';
     } else {
-        echo "Error al registrar el usuario: " . $stmt->error;
-    }
+        echo 'Error al registrar el usuario';
 
-    // 2.6 Cerrar statement y conexión
-    $stmt->close();
-    $mysqli->close();
+
+        //7. CERRAR LA CONEXION
+        $stmt->close();
+        $mysqli->close();
+    }
 }
+
 ?>
 
+
+
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
 </head>
 
 <body>
-    <h1>Registro de Usuario</h1>
+    <h1>Reegistro</h1>
     <form action="" method="POST">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required><br>
 
-        <label for="surname">Apellido:</label>
-        <input type="text" id="surname" name="surname" required><br>
+        <label for="name">Nombre:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+        <label for="surname">Apellidos:</label><br>
+        <input type="text" id="surname" name="surname" required><br><br>
 
-        <label for="avatar">Avatar (URL):</label>
-        <input type="text" id="avatar" name="avatar"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br>
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
 
-        <label for="age">Edad:</label>
-        <input type="number" id="age" name="age"><br>
+        <label for="avatar">Avatar:</label><br>
+        <input type="text" id="avatar" name="avatar" required><br><br>
 
-        <label for="job">Trabajo:</label>
-        <input type="text" id="job" name="job"><br>
+        <input type="submit" value="Registrarse">
 
-        <input type="submit" value="Registrar">
     </form>
 </body>
 

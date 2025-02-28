@@ -1,65 +1,69 @@
 <?php
 session_start();
-require_once 'config.php';
+require_once('config.php');
 
-// 2. Comprobamos si el formulario ha sido enviado
+//1. comprobar si el formulario ha sido enviado
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 2.1 Recogemos los datos del formulario
-
+    //2. GUARDAMOSDATOS DEL FORMULARIO EN VARIABLES
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // 2.2 Consulta para comprobar si el usuario existe
-    $sql = "SELECT * FROM USERS WHERE email = '$email' LIMIT 1";
-    $resultado = $mysqli->query($sql);
+    //3. EJECUTAR LA CONSULTA
+    $result = $mysqli->query("SELECT * FROM USERS WHERE email = '$email' LIMIT 1");
 
-    // 2.3 Comprobamos si la consulta devolvió algo
-    if ($resultado && $resultado->num_rows > 0) {
-        // Obtenemos la fila como array asociativo
-        $user = $resultado->fetch_assoc();
+    //4. COMPROBAR SI HAY RESULTADOS
+    if ($result && $result->num_rows > 0) {
+        $user = $result->fetch_assoc();
 
-        // 2.4 Verificamos la contraseña con password_verify
+        //5. COMPROBAR SI LA CONTRASEÑA ES CORRECTA
         if (password_verify($password, $user['password'])) {
-            // 2.5 Guardamos en $_SESSION la información del usuario para que esté disponible en toda la navegación
-            $_SESSION['user_id']      = $user['id'];
-            $_SESSION['user_email']   = $user['email'];
-            $_SESSION['user_name']    = $user['name'];
+            //6. INICIAR SESION
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_surname'] = $user['surname'];
-            $_SESSION['user_rol']     = $user['rol'];
-            $_SESSION['user_avatar']  = $user['avatar'];
+            $_SESSION['user_avatar'] = $user['avatar'];
+            $_SESSION['user_rol'] = $user['rol'];
+            $_SESSION['user_age'] = $user['age'];
+            $_SESSION['user_job'] = $user['job'];
 
-            header("Location: index.php");
-            exit;
+            //7. REDIRIGIR A LA PAGINA DE INICIO
+            header('Location: index.php');
         } else {
-            echo "La contraseña no es correcta.";
+            echo 'Contraseña incorrecta';
         }
-    } else {
-        echo "El usuario no existe.";
-    }
 
-    // Cerrar la conexión
-    $mysqli->close();
+        //
+        header('Location: index.php');
+    } else {
+        echo 'Usuario no encontrado';
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
 </head>
 
 <body>
-    <h1>Iniciar Sesión</h1>
+    <h1>INICIO DE SESIÓN</h1>
     <form action="" method="POST">
+
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
 
         <label for="password">Contraseña:</label><br>
         <input type="password" id="password" name="password" required><br><br>
 
-        <input type="submit" value="Iniciar Sesión">
+        <input type="submit" value="Iniciar sesión">
+
     </form>
 </body>
 
