@@ -6,7 +6,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$id = $mysqli->real_escape_string($_GET['id']);
+$id = $mysqli->$_GET['id'];
 $result = $mysqli->query("SELECT * FROM clientes WHERE id = $id");
 $cliente = $result->fetch_assoc();
 

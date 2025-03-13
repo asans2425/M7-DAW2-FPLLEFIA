@@ -6,16 +6,13 @@ $stats = getPlayerStats($_SESSION['user_id']);
 $leagues = getUserLeagues($_SESSION['user_id']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = sanitize($_POST['name']);
-    $current_password = $_POST['current_password'];
-    $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
-
     $error = '';
     $success = '';
 
     // Update profile
     if (isset($_POST['update_profile'])) {
+        $name = sanitize($_POST['name']);
+
         $query = "UPDATE users SET name = '$name' WHERE id = {$_SESSION['user_id']}";
 
         if ($conn->query($query)) {
@@ -55,6 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Change password
     if (isset($_POST['change_password'])) {
+        $current_password = isset($_POST['current_password']) ? $_POST['current_password'] : '';
+        $new_password = isset($_POST['new_password']) ? $_POST['new_password'] : '';
+        $confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
+
         if (empty($current_password) || empty($new_password) || empty($confirm_password)) {
             $error = 'Todos los campos de contraseña son requeridos.';
         } elseif ($new_password !== $confirm_password) {

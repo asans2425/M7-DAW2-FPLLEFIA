@@ -37,7 +37,7 @@ $stats = getPlayerStats($_SESSION['user_id']);
             <?php endif; ?>
         </div>
         <div>
-            <h1 class="text-2xl font-bold text-gray-800">¡Hola, <?php echo $user['name']; ?>!</h1>
+            <h1 class="text-2xl font-bold text-gray-800">¡Hola, <?php echo $user['name']; ?>!</h1> <img class="w-[10%]" src="../assets/hello.png" alt="">
             <p class="text-gray-600">Bienvenido a Peregrang App</p>
         </div>
     </div>

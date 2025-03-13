@@ -3,6 +3,9 @@
 function sanitize($data)
 {
     global $conn;
+    if ($data === null) {
+        return '';
+    }
     return mysqli_real_escape_string($conn, htmlspecialchars(trim($data)));
 }
 

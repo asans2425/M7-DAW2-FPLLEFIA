@@ -160,9 +160,9 @@ if ($league_id > 0) {
         </div>
     <?php elseif ($league_id > 0): ?>
         <!-- League Details -->
-        <div class="mb-6 flex items-center justify-between">
+        <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
             <div>
-                <h1 class="text-2xl font-bold text-gray-800"><?php echo $league['name']; ?></h1>
+                <h1 class="text-2xl font-bold text-gray-800 pb-3"><?php echo $league['name']; ?></h1>
                 <p class="text-gray-600"><?php echo $league['description']; ?></p>
             </div>
             <div>
@@ -272,7 +272,7 @@ if ($league_id > 0) {
                                 </div>
                                 <div>
                                     <div class="text-sm font-medium text-gray-900"><?php echo $member['name']; ?></div>
-                                    <div class="text-xs text-gray-500">@<?php  ?></div>
+
                                     <div class="text-xs text-gray-500">@<?php echo $member['username']; ?></div>
                                 </div>
                             </li>

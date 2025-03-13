@@ -496,7 +496,7 @@ if ($match_id > 0) {
                                 </div>
 
                                 <div class="col-span-1 flex flex-col items-center">
-                                    <div class="text-lg font-bold mb-1"><?php echo $team1_sets; ?> - <?php echo $team2_sets; ?></div>
+                                    <div class="text-lg font-bold mb-1"><?php echo $team1_sets; ?>-<?php echo $team2_sets; ?></div>
                                     <div class="text-xs text-gray-500">Sets</div>
                                 </div>
 
