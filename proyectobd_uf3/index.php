@@ -24,12 +24,12 @@ $projects = $resultProjects->fetch_all(MYSQLI_ASSOC);
 
 <body class="bg-gray-100">
 
-    <header class="bg-gray-800 p-8 flex justify-center items-center">
-        <h1 class="text-3xl font-bold text-white">Tarjetas de Datos</h1>
+    <header class="bg-gray-800 p-8 flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-white">Agen Bootstrap</h1>
         <nav class="flex items-center">
             <?php if (isset($_SESSION['user_id'])): ?>
-                <img src="<?= $_SESSION['user_avatar'] ?>" alt="">
-                <p><?= $_SESSION['user_name'] ?></p>
+                <p class="text-white" style="font-size: 18px; font-weight:bold; padding:10px">Bienvenido <?= $_SESSION['user_name'] ?> !</p>
+                <img class="w-[25%]" src="<?= $_SESSION['user_avatar'] ?>" alt="">
                 <a href="logout.php" class="text-white ml-4">Cerrar Sesión</a>
                 <?php if ($_SESSION['user_rol'] === 'admin'): ?>
                     <a href="admin/adminPanel.php" class="text-white ml-4"><img src="./assets/admin.png" alt=""></a>
@@ -55,6 +55,8 @@ $projects = $resultProjects->fetch_all(MYSQLI_ASSOC);
                 </div>
             <?php endforeach; ?>
         </div>
+
+
 
         <!-- Sección de Proyectos -->
         <h1 class="text-3xl font-bold mb-6 text-center">Proyectos Recientes</h1>

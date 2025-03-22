@@ -48,7 +48,7 @@ $testimonios = $resultTestimonios->fetch_all(MYSQLI_ASSOC);
                 <td><?= $item['description'] ?></td>
                 <td><?= $item['rating'] ?></td>
                 <td>
-                    <a href="edit-testimonial.php?id=<?= $item['id'] ?>">Editar</a>
+                    <a href="testimonials/edit-testimonial.php?id=<?= $item['id'] ?>">Editar</a>
                     <a href="delete-testimonial.php?id=<?= $item['id'] ?>">Eliminar</a>
                 </td>
             </tr>
@@ -56,7 +56,6 @@ $testimonios = $resultTestimonios->fetch_all(MYSQLI_ASSOC);
     </table>
 
 
-    <h2>Usuarios</h2>
     <h2>Noticias</h2>
     <h2>Proyectos</h2>
 </body>

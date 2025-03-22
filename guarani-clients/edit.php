@@ -6,7 +6,9 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$id = $mysqli->$_GET['id'];
+// Corregir la asignación del ID
+$id = (int) $_GET['id'];
+
 $result = $mysqli->query("SELECT * FROM clientes WHERE id = $id");
 $cliente = $result->fetch_assoc();
 
@@ -23,10 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $poblacion = $mysqli->real_escape_string($_POST['poblacion']);
     $telefono = $mysqli->real_escape_string($_POST['telefono']);
     $cp = $mysqli->real_escape_string($_POST['cp']);
+    $comentario = $mysqli->real_escape_string($_POST['comentario']);
 
-    $query = "UPDATE clientes SET nombre = ?, apellidos = ?, nif = ?, domicilio = ?, poblacion = ?, telefono = ?, cp = ? WHERE id = ?";
+    $query = "UPDATE clientes SET nombre = ?, apellidos = ?, nif = ?, domicilio = ?, poblacion = ?, telefono = ?, cp = ?, comentario = ? WHERE id = ?";
     $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("sssssssi", $nombre, $apellidos, $nif, $domicilio, $poblacion, $telefono, $cp, $id);
+    $stmt->bind_param("ssssssssi", $nombre, $apellidos, $nif, $domicilio, $poblacion, $telefono, $cp, $comentario, $id);
     $stmt->execute();
 
     header("Location: index.php");
@@ -50,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-
 </head>
 
 <body class="bg-gray-100">
@@ -61,8 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <img src="assets/guarani-logo.png" alt="GRUPO GUARANI" class="w-[15%] mr-3">
                 <h1 class="text-3xl font-bold">Editar cliente</h1>
             </div>
-            <a href="index.php"
-                class="bg-red-500 hover:bg-red-600 text-white text-xl font-semibold py-2 px-4 rounded shadow flex items-center">
+            <a href="index.php" class="bg-red-500 hover:bg-red-600 text-white text-xl font-semibold py-2 px-4 rounded shadow flex items-center">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Volver
             </a>
         </div>
@@ -106,17 +107,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-6">
-                <label for="cp" class="block text-gray-700 font-bold mb-2">Comentario</label>
+                <label for="comentario" class="block text-gray-700 font-bold mb-2">Comentario</label>
                 <input type="text" id="comentario" name="comentario" value="<?php echo htmlspecialchars($cliente['comentario']); ?>" required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="flex justify-between">
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center">
                     <i class="fa-solid fa-floppy-disk mr-2"></i> Actualizar Cliente
                 </button>
-                <a href="index.php"
-                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center">
+                <a href="index.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center">
                     <i class="fa-solid fa-times mr-2"></i> Cancelar
                 </a>
             </div>
