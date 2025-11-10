@@ -8,14 +8,23 @@
 <body>
     <h1>esta es la página 2</h1>
     <?php
-    if(isset($_GET['nom']) && isset($_GET['edat'])){
-        $nom = $_GET['nom'];
-        $edat = $_GET['edat'];
-
-        echo "<p>Nom: $nom</p>";
-        echo "<p>Edat: $edat</p>";
-    }
+    echo $_GET['edat'];
+    echo '<br>';
+    echo $_GET['nom'];
     
+
+
+    //isset: lo usamos para comprobar que existe un parametro con ese nombre 
+    
+    if(isset($_GET['nom'])){
+
+        $n = $_GET['nom'];
+
+        echo $n;
+    }
+    else{
+        echo 'no existe el parametro nombre';
+    }
     ?>
 </body>
 </html>
